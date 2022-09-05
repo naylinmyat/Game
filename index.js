@@ -537,7 +537,7 @@ startBtn.addEventListener("click", function(){
                     warning.style.display = "flex";
                 }else{
                     gameIntervel = 0;
-                let random = getRandomInt(32);
+                let random = getRandomInt(31);
                 animationCircle(null,100);
                 setTimeout(() => {
                     clearInterval(gameIntervel);
@@ -736,6 +736,9 @@ function  animationCircle(random,speed){
         return ;
     }
     gameIntervel = setInterval(() => {
+        if(i == 32){
+            i = 0;
+        }
         if(!centerImg[i].className.includes("animate")) {
             centerImg[i].classList.add("animate");
         }
@@ -746,13 +749,7 @@ function  animationCircle(random,speed){
         }
         i++;
         number--;
-        if(i == 32){
-            i = 0;
-        }
         if(number == 0){
-            if(i == 0){
-                i = 32;
-            }
             clearInterval(gameIntervel);
             let y = i - 1;
             check(y);
