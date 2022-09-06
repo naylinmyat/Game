@@ -518,6 +518,7 @@ body {
     height: 16%;
     left: 42%;
     top: 0;
+    z-index: 2;
 }
 
 .game__container-center-top .img6 {
@@ -582,6 +583,7 @@ body {
     height: 16%;
     right: 0%;
     top: 41.5%;
+    z-index: 2;
 }
 
 .game__container-center-top .img14 {
@@ -646,6 +648,7 @@ body {
     height: 16%;
     right: 42.3%;
     bottom: 0%;
+    z-index: 2;
 }
 
 .game__container-center-top .img22 {
@@ -710,6 +713,7 @@ body {
     height: 16%;
     left: 0%;
     bottom: 42.2%;
+    z-index: 2;
 }
 
 .game__container-center-top .img30 {
@@ -770,6 +774,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+    z-index: 2;
 }
 .circle {
     position: relative;
@@ -829,9 +834,22 @@ body {
     animation: win 1s ease-in-out;
     display: none;
 }
+.outOfCoinAnimation{
+    z-index: 1;
+    background-image: url(../assets/images/animation-gif/outOfCoin.gif);
+    width: 79%;
+    height: 79%;
+    background-size: 100% 100%;
+    position: absolute;
+    top: 10.5%;
+    left: 10.5%;
+    animation: win 1s ease-in-out;
+    display: none;
+}
 
 .wantToQuit,
-.warning{
+.warning,
+.outOfCoinWarning{
     width: 200px;
     height: 150px;
     border-radius: 20px;
@@ -856,7 +874,7 @@ body {
 }
 
 .winOrLose h3, .winOrLose h5, .winOrLose p ,
-.wantToQuit h3, .warning h3{
+.wantToQuit h3, .warning h3, .outOfCoinWarning h3{
     font-size: 1.3rem;
     font-weight: 600;
     background: linear-gradient(90deg, #ffe600, #ff7b01);
@@ -866,7 +884,8 @@ body {
 }
 
 .wantToQuit span,
-.warning span{
+.warning span,
+.outOfCoinWarning span{
     padding: 3%;
     border-radius: 5px;
     font-size: 1.5rem;
@@ -874,7 +893,8 @@ body {
     cursor: pointer;
 }
 .wantToQuit .cancleBth,
-.warning .okBtn{
+.warning .okBtn,
+.outOfCoinWarning .okBtn2{
     color: greenyellow;
 }  
 .wantToQuit .yesBtn{
