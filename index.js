@@ -26,7 +26,7 @@ const winCount = document.querySelector(".winCount");
 const myOwnCoin = document.querySelector(".myOwnCoin");
 const circle = document.querySelector(".circle");
 let ss = document.getElementById("ss");
-const countDown = document.querySelector(".countDown");
+let countDown = document.querySelector(".countDown");
 const clockTickAudio = document.querySelector(".clockTickAudio");
 const mainBackgroundSound = document.querySelector(".mainBackgroundSound");
 const coinDropAudio = document.querySelector(".coinDropAudio");
@@ -64,6 +64,9 @@ const okBtn = document.querySelector(".okBtn");
 const outOfCoinWarning = document.querySelector(".outOfCoinWarning");
 const okBtn2 = document.querySelector(".okBtn2");
 const outOfCoinAnimation = document.querySelector(".outOfCoinAnimation");
+const plusBtn = document.querySelector(".plusBtn");
+const countText = document.querySelector(".countText");
+const minusBtn = document.querySelector(".minusBtn");
 
 const animalsBar = document.querySelector(".animalsBar");
 let animalList = [];
@@ -503,9 +506,45 @@ okBtn2.addEventListener("click", function () {
       playPermission = true;
       outOfCoinWarning.style.display = "none";
     }, 100);
-  });
+});
+plusBtn.addEventListener("click", function(){
+    playBubbleSound();
+    this.classList.add("zoomoutAnimate");
+    setTimeout(() => {
+      this.classList.remove("zoomoutAnimate");
+      if(count == 60){
+        plusBtn.style.background = "#dad7cd";
+        disabled = true;
+      }else{
+        plusBtn.style.background = "linear-gradient(to bottom, #ffe600, #ff7b01)";
+        minusBtn.style.background = "linear-gradient(to bottom, #ffe600, #ff7b01)";
+        disabled = false;
+        count = count + 5;
+        countText.innerText = count;
+      }
+    }, 100);
+});
+
+minusBtn.addEventListener("click", function(){
+    playBubbleSound();
+    this.classList.add("zoomoutAnimate");
+    setTimeout(() => {
+      this.classList.remove("zoomoutAnimate");
+      if(count == 10){
+        minusBtn.style.background = "#dad7cd";
+        disabled = true;
+      }else{
+        plusBtn.style.background = "linear-gradient(to bottom, #ffe600, #ff7b01)";
+        minusBtn.style.background = "linear-gradient(to bottom, #ffe600, #ff7b01)";
+        disabled = false;
+        count = count - 5;
+        countText.innerText = count;
+      }
+    }, 100);
+});
 
 let count = 30;
+countText.innerText = count;
 let timerId = 0;
 let betPermission = false;
 let playPermission = true;
@@ -555,7 +594,7 @@ startBtn.addEventListener("click", function(){
                         warning.style.display = "flex";
                     }else{
                         gameIntervel = 0;
-                    let random = getRandomInt(31);
+                    let random = getRandomInt(32);
                     animationCircle(null,100);
                     setTimeout(() => {
                         clearInterval(gameIntervel);
@@ -588,7 +627,7 @@ startBtn.addEventListener("click", function(){
 function countingEnd(){
     clearInterval(timerId);
     timerId = 0;
-    count = 30;
+    count = +countText.innerText;
     countDown.innerHTML = count;
     endClockTick()
     circle.style.display = "none"
